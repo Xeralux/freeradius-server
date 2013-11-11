@@ -1001,7 +1001,7 @@ static int rest_decode_post(rlm_rest_t *instance,
 			continue;
 		}
 
-		if (!radius_request(&reference, request_name)) {
+		if (radius_request(&reference, request_name) < 0) {
 			RWDEBUG("Attribute name refers to outer request"
 		       	       " but not in a tunnel, skipping");
 
@@ -1314,7 +1314,7 @@ static VALUE_PAIR *json_pairmake(rlm_rest_t *instance,
 			continue;
 		}
 
-		if (!radius_request(&reference, request_name)) {
+		if (radius_request(&reference, request_name) < 0) {
 			RWDEBUG("Attribute name refers to outer request"
 		       	       " but not in a tunnel, skipping");
 
